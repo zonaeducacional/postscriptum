@@ -1,0 +1,13 @@
+android/build/
+releases/
+local.properties
+*.jks
+*.keystore
+*.p12
+.env*
+__pycache__/
+node_modules/
+playwright-report/
+test-results/
+_site/
+.venv/

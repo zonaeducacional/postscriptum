@@ -1,0 +1,21 @@
+name: Verificar compilação Android
+on:
+  push:
+    branches: [main]
+    paths: ['android/**', 'scripts/build_android.py', '*.js', '*.css', '*.html', 'fonts/**', '.github/workflows/android.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Preparar SDK
+        run: sdkmanager "platforms;android-34" "build-tools;34.0.0"
+      - name: Compilar sem assinatura privada
+        run: python3 scripts/build_android.py --unsigned
